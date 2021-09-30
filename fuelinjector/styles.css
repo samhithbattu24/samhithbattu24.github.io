@@ -1,5 +1,6 @@
 .navbar-dark {
     background-color: #697184;
+    color: #413f3d;
 }
 
 .jumbotron {
@@ -7,8 +8,15 @@
     background-color: #b1a6a4;
 }
 
+.btn-header {
+    color: black;
+    background-color: #f2f1ef;
+}
+
 .footer {
+    color: #f2f1ef;
     background-color: #413f3d;
+    padding: 50px;
 }
 
 body {
