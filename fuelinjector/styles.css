@@ -16,7 +16,12 @@
 .footer {
     color: #f2f1ef;
     background-color: #413f3d;
-    padding: 50px;
+    padding: 50px 20px;
+}
+
+.foot-links {
+    margin-top: 20px;
+    color: #f2f1ef;
 }
 
 body {
