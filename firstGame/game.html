@@ -40,6 +40,7 @@
             }
             var mousePos = calculateMousePos(evt);
             var distance = Math.sqrt((ballY-mousePos.y)*(ballY-mousePos.y)+(ballX-mousePos.x)*(ballX-mousePos.x));
+            var slope = (ballY-mousePos.y)/(ballX-mousePos.x);
             if(ballSpeedX==0 && ballSpeedY==0){
                 ballSpeedX = -((ballX-mousePos.x) / distance) * speed;
                 ballSpeedY = -((ballY-mousePos.y) / distance) * speed;
@@ -128,16 +129,18 @@
             colorRect(0, 0, canvas.width, canvas.height, 'black');
 
             if(winScreen){
-                
+                canvasContext.textAlign = 'center';
+                canvasContext.font = '30px Arial';
                 if(playerScore==WIN_SCORE){
                     canvasContext.fillStyle = 'green';
-                    canvasContext.fillText('YOU WIN !', canvas.width/2-50, canvas.height/2, 100);
+                    canvasContext.fillText('YOU WIN !', canvas.width/2, canvas.height/2-15);
                 }else if(cpuScore==WIN_SCORE){
                     canvasContext.fillStyle = 'red';
-                    canvasContext.fillText('GAME OVER', canvas.width/2-50, canvas.height/2, 100);
+                    canvasContext.fillText('GAME OVER', canvas.width/2, canvas.height/2-15);
                 }
-                canvasContext.fillStyle = 'white'
-                canvasContext.fillText('Click to Play Again', canvas.width/2-60, canvas.height/2+50, 100);
+                canvasContext.fillStyle = 'white';
+                canvasContext.font = '20px Arial';
+                canvasContext.fillText('\"Click to Play Again\"', canvas.width/2, canvas.height/2+200);
                 return;
             }
             drawNet();
@@ -145,9 +148,16 @@
         	colorRect(canvas.width-PADDLE_THICKNESS-5, paddle2Y, PADDLE_THICKNESS, PADDLE_HEIGHT, 'white');
             colorCirc(ballX, ballY, 5, 'red');  
             canvasContext.fillStyle = 'white';
-            canvasContext.fillText('YOUR SCORE:'+playerScore, 100, 100, 100);
-	        canvasContext.fillText('CPU SCORE:'+cpuScore, canvas.width-200, 100, 100);
-            canvasContext.fillText('WIN SCORE:'+WIN_SCORE, canvas.width/2-35, 100, 100);
+            canvasContext.textAlign = 'center';
+            canvasContext.font = '20px Arial';
+            canvasContext.fillText('WIN SCORE:'+WIN_SCORE, canvas.width/2, 100);
+            canvasContext.textAlign = 'start';
+            canvasContext.fillText('Your Score:', 100, 100);
+            canvasContext.textAlign = 'end';
+	        canvasContext.fillText('CPU Score:', canvas.width-130, 100);
+            canvasContext.font = '30px Arial';
+            canvasContext.fillText(playerScore, 230, 100);
+            canvasContext.fillText(cpuScore, canvas.width-100, 100);          
         }
 
         function colorRect(left, top, width, height, color){
