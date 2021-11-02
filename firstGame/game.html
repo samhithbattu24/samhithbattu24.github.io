@@ -74,9 +74,9 @@
             var paddle2YCenter = paddle2Y + (PADDLE_HEIGHT/2);
 
             if(paddle2YCenter<ballY-35){
-                paddle2Y = paddle2Y + 2.25;
+                paddle2Y = paddle2Y + 2.55;
             } else if(paddle2YCenter>ballY+35){
-                paddle2Y = paddle2Y - 2.25;
+                paddle2Y = paddle2Y - 2.55;
             }
 
             ballX = ballX + ballSpeedX;
@@ -89,14 +89,14 @@
                         var deltaY = ballY - (paddle1Y+PADDLE_HEIGHT/2);
                         ballSpeedY = deltaY * 0.075;
                     }
-            } else if(ballX<5){
+            } else if(ballX<10){
                 cpuScore++;
                 if(playerScore==WIN_SCORE || cpuScore==WIN_SCORE){
                     winScreen = true;
                 }
 
-                ballX = 1150;
-                ballY = 350;
+                ballSpeedX = -ballSpeedX;
+                ballSpeedY = ballSpeedY * 0.5;
             }
             if(ballY > paddle2Y && ballY < paddle2Y+PADDLE_HEIGHT) {
                     if(ballX>canvas.width-20){
@@ -105,17 +105,13 @@
                         var deltaY = ballY - (paddle2Y+PADDLE_HEIGHT/2);
                         ballSpeedY = deltaY * 0.075;
                     }
-            } else if(ballX>canvas.width-5){
+            } else if(ballX>canvas.width-10){
                 playerScore++;
                 if(playerScore==WIN_SCORE || cpuScore==WIN_SCORE){
                     winScreen = true;
                 }
 
-                ballSpeedX = 0;
-                ballSpeedY = 0;
-                
-                ballX = 50;
-                ballY = 350;
+                ballSpeedX = -ballSpeedX;
             }
             if(ballY<5){
                 ballSpeedY = -ballSpeedY;
