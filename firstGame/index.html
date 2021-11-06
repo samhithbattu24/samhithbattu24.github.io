@@ -25,31 +25,41 @@
             font-size: 100px;
         }
         .flex{
-            margin-top: 200px;
+            min-height: 600px;
+            margin-top: 50px;
+        }
+        .maxP{
+            margin-top: 75px;
         }
     </style>
 
-    <div class="row mt-5 justify-content-center align-items-center">
-        <div class="col-2 playerScore text-center">
+    <div class="row flex justify-content-end align-items-center">
+        <div class="col order-2 order-xl-1 playerScore text-center">
             <span id="scorePlr">0</span>
         </div>
-        <div class="col-8">
+        <div class="col order-1 order-xl-2">
             <canvas></canvas>
         </div>
-        <div class="col-2 cpuScore text-center">
+        <div class="col order-3 order-xl-3 cpuScore text-center">
             <span id="scoreCpu">0</span>
         </div>
     </div>
 
-    <div class="row mt-5 flex fixed-top">
-        <span class="offset-8 col-1 text-white">DIFFICULTY :</span>
-        <span class="col-3 text-white"><strong id="difficulty">EASY</strong></span>
-        <span class="offset-8 col-1 text-white">MAX POINTS :</span>
-        <span class="col-3 text-white"><strong id="maxPoints">3</strong></span>
+    <div class="row flex fixed-top">
+        <div class="offset-4 col">
+            <span class="text-white">DIFFICULTY :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="text-white"><strong id="difficulty">EASY</strong></span>
+        </div>
+    </div>
+    <div class="row maxP fixed-top">
+        <div class="offset-4 col">
+            <span class="text-white">MAX POINTS :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="text-white"><strong id="maxPoints">3</strong></span>
+        </div>
     </div>
 
     <div id="setTab" class="row flex fixed-top justify-content-center align-items-center">
-        <div class="col-4">
+        <div class="col-6 col-lg-5 col-xl-4">
             <div class="card">
                 <h2 class="card-header bg-primary text-white text-center"><strong>Ping Pong 2D</strong></h2>
                 <div class="card-body">
@@ -100,7 +110,7 @@
     </div>
 
     <div id="winTab" class="row flex fixed-top justify-content-center align-items-center">
-        <div class="col-4">
+        <div class="col-6 col-lg-5 col-xl-4">
             <div class="card">
                 <h2 class="card-header bg-success text-white text-center">YOU WIN!</h2>
                 <div class="card-body">
@@ -151,7 +161,7 @@
     </div>
 
     <div id="loseTab" class="row flex fixed-top justify-content-center align-items-center">
-        <div class="col-4">
+        <div class="col-6 col-lg-5 col-xl-4">
             <div class="card">
                 <h2 class="card-header bg-danger text-white text-center">YOU LOSE!</h2>
                 <div class="card-body">
