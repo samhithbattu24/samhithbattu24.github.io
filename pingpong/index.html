@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <title>Ping Pong 2D</title>
+    </head>
+
+    <style>
+        body{
+            margin: 0;
+        }
+        .playerScore{
+            font-family: fantasy;
+            color: green;
+            font-size: 100px;
+        }
+        .cpuScore{
+            font-family: fantasy;
+            color: red;
+            font-size: 100px;
+        }
+        .flex{
+            min-height: 600px;
+            margin-top: 50px;
+        }
+        .maxP{
+            margin-top: 75px;
+        }
+    </style>
+
+    <div class="row flex justify-content-end align-items-center">
+        <div class="col order-2 order-xl-1 playerScore text-center">
+            <span id="scorePlr">0</span>
+        </div>
+        <div class="col order-1 order-xl-2">
+            <canvas></canvas>
+        </div>
+        <div class="col order-3 order-xl-3 cpuScore text-center">
+            <span id="scoreCpu">0</span>
+        </div>
+    </div>
+
+    <div class="row flex fixed-top">
+        <div class="offset-4 col">
+            <span class="text-white">DIFFICULTY :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="text-white"><strong id="difficulty">EASY</strong></span>
+        </div>
+    </div>
+    <div class="row maxP fixed-top">
+        <div class="offset-4 col">
+            <span class="text-white">MAX POINTS :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="text-white"><strong id="maxPoints">3</strong></span>
+        </div>
+    </div>
+
+    <div id="setTab" class="row flex fixed-top justify-content-center align-items-center">
+        <div class="col-6 col-lg-5 col-xl-4">
+            <div class="card">
+                <h2 class="card-header bg-primary text-white text-center"><strong>Ping Pong 2D</strong></h2>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group row">
+                            <label for="difficulty" class="col-4">DIFFICULTY</label>
+                            <div class="col-8">
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn easy btn-secondary btn-sm">
+                                        <input type="radio" name="options" id="setE" autocomplete="off">EASY
+                                    </label>
+                                    <label class="btn medium btn-secondary btn-sm">
+                                        <input type="radio" name="options" id="setM" autocomplete="off">MEDIUM
+                                    </label>
+                                    <label class="btn hard btn-secondary btn-sm">
+                                        <input type="radio" name="options" id="setH" autocomplete="off">HARD
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="form-group row">
+                            <label for="maxPoints" class="col-4">MAX POINTS</label>
+                            <div class="col-8">
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn p3 btn-secondary btn-sm">
+                                        <input type="radio" name="options" id="set3" autocomplete="off">3
+                                    </label>
+                                    <label class="btn p5 btn-secondary btn-sm">
+                                        <input type="radio" name="options" id="set5" autocomplete="off">5
+                                    </label>
+                                    <label class="btn p8 btn-secondary btn-sm">
+                                        <input type="radio" name="options" id="set8" autocomplete="off">8
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="form-group row">
+                            <div class="offset-2 col-8">
+                                <button type="button" class="btn bg-dark text-white btn-block" id="startGameBtn">START GAME</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="winTab" class="row flex fixed-top justify-content-center align-items-center">
+        <div class="col-6 col-lg-5 col-xl-4">
+            <div class="card">
+                <h2 class="card-header bg-success text-white text-center">YOU WIN!</h2>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group row">
+                            <label for="difficulty" class="col-4">DIFFICULTY</label>
+                            <div class="col-8">
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn easy btn-secondary btn-sm">
+                                        <input type="radio" name="options" id="winE" autocomplete="off">EASY
+                                    </label>
+                                    <label class="btn medium btn-secondary btn-sm">
+                                        <input type="radio" name="options" id="winM" autocomplete="off">MEDIUM
+                                    </label>
+                                    <label class="btn hard btn-secondary btn-sm">
+                                        <input type="radio" name="options" id="winH" autocomplete="off">HARD
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="form-group row">
+                            <label for="maxPoints" class="col-4">MAX POINTS</label>
+                            <div class="col-8">
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn p3 btn-secondary btn-sm">
+                                        <input type="radio" name="options" id="win3" autocomplete="off">3
+                                    </label>
+                                    <label class="btn p5 btn-secondary btn-sm">
+                                        <input type="radio" name="options" id="win5" autocomplete="off">5
+                                    </label>
+                                    <label class="btn p8 btn-secondary btn-sm">
+                                        <input type="radio" name="options" id="win8" autocomplete="off">8
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="form-group row">
+                            <div class="offset-2 col-8">
+                                <button type="button" class="btn bg-dark text-white btn-block" id="startGameWBtn">PLAY AGAIN</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loseTab" class="row flex fixed-top justify-content-center align-items-center">
+        <div class="col-6 col-lg-5 col-xl-4">
+            <div class="card">
+                <h2 class="card-header bg-danger text-white text-center">YOU LOSE!</h2>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group row">
+                            <label for="difficulty" class="col-4">DIFFICULTY</label>
+                            <div class="col-8">
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn easy btn-secondary btn-sm">
+                                        <input type="radio" name="options" id="loseE" autocomplete="off">EASY
+                                    </label>
+                                    <label class="btn medium btn-secondary btn-sm">
+                                        <input type="radio" name="options" id="loseM" autocomplete="off">MEDIUM
+                                    </label>
+                                    <label class="btn hard btn-secondary btn-sm">
+                                        <input type="radio" name="options" id="loseH" autocomplete="off">HARD
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="form-group row">
+                            <label for="maxPoints" class="col-4">MAX POINTS</label>
+                            <div class="col-8">
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn p3 btn-secondary btn-sm">
+                                        <input type="radio" name="options" id="lose3" autocomplete="off">3
+                                    </label>
+                                    <label class="btn p5 btn-secondary btn-sm">
+                                        <input type="radio" name="options" id="lose5" autocomplete="off">5
+                                    </label>
+                                    <label class="btn p8 btn-secondary btn-sm">
+                                        <input type="radio" name="options" id="lose8" autocomplete="off">8
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="form-group row">
+                            <div class="offset-2 col-8">
+                                <button type="button" class="btn bg-dark text-white btn-block" id="startGameLBtn">PLAY AGAIN</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="./index.js"></script>
+    
+</html>    
